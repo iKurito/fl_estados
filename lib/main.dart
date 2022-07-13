@@ -1,8 +1,7 @@
-import 'package:fl_estados/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:fl_estados/pages/pages.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,21 +10,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<UserBloc>(
-          create: (context) => UserBloc(),
-        ),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Material App',
+      initialRoute: 'pagina1',
+      // routes: {
+      //   'pagina1': (_) => const Pagina1Page(),
+      //   'pagina2': (_) => const Pagina2Page(),
+      // }
+      getPages: [
+        GetPage(name: '/pagina1', page: () => const Pagina1Page()),
+        GetPage(name: '/pagina2', page: () => const Pagina2Page()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        initialRoute: 'pagina1',
-        routes: {
-          'pagina1': (_) => const Pagina1Page(),
-          'pagina2': (_) => const Pagina2Page(),
-        }
-      ),
     );
   }
 }
